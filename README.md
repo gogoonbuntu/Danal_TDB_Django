@@ -1,6 +1,7 @@
 # 다날 휴대폰결제 Django Python 연동모듈 (22.05.16)
 
 Django version 2.2.4
+
 Python version 3.7.4
 
 ## Django 기본 프로젝트 디렉터리
