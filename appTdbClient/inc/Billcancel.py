@@ -13,12 +13,14 @@ def billcancel(request):
     
     TransData['ID'] = functions.ID
     TransData['PWD'] = functions.PWD
-    TransData['TID'] = "MMDDHHMMXXXXXXXX"
     TransData['Command'] = "BILL_CANCEL"
     TransData['OUTPUTOPTION'] = "3"
     
+    TransData['TID'] = "YYMMDDHHmmssXXXXX2" # 18자리 거래번호
+    
     Res = functions.CallTeledit(TransData, False)
-    print(Res)
+    print("RES=> ", Res)
+    
     if (Res['Result'] is '0'):
         return HttpResponse('Success\n'+functions.Map2Str(Res))
     else:

@@ -2,21 +2,33 @@ import os
 import subprocess
 from urllib import parse
 import locale
+import requests
+import json
 
 #############################################
 #
-# TeleditBinPath 에 SClient 실행파일을 꼭 위치시키고, 실행권한을 설정해주세요.
-# 기본값은 프로젝트 디렉터리/bin/SClient 입니다.
-# 해당 SClient 는 리눅스 64비트 용입니다.
+# SClient가 설치된 다날 WEB GW 를 호출입니다. POST 형태의 문자열로 데이터를 받습니다.
 #
 #############################################
 
-TeleditBinPath = "appTdbClient/bin/"
-ID = "A010002002"
-PWD = "bbbbb"
-AMOUNT = 301
+with open('conf.json') as f:
+    jsonData = json.load(f)
+    
+if jsonData['Debug'] : print(jsonData)
+
+ID = jsonData['ID']
+PWD = jsonData['PWD']
+AMOUNT = jsonData['ItemAmt']
+
+
 
 def CallTeledit(TransData, Debug=False):
+
+    #headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+    #arg=MakeParam(TransData).encode('euc-kr')
+    #Output = requests.post('https://ui.teledit.com/Danal/TGW/request.php', headers=headers, data=arg)
+    
+    TeleditBinPath = jsonData['TeleditBinPath']
     Bin="SClient"
     arg=MakeParam(TransData)
     Input = TeleditBinPath+Bin+" \""+arg+"\""
@@ -29,6 +41,7 @@ def CallTeledit(TransData, Debug=False):
         Output.wait()
         
     Output = msg_content
+    
     if Debug :
         print("Input is : "+Input)
         print("Output is : "+Output)
@@ -67,7 +80,7 @@ def MakeFormInput(dic,ext=list(),Prefix=""):
 
 def MakeItemInfo(ItemAmt,ItemCode,ItemName):
     ItemInfo = ItemCode[0]+"|"+ItemAmt+"|1|"+ItemCode+"|"+ItemName
-    print(ItemInfo)
+    
     return ItemInfo
 
 def MakeParam(dic):

@@ -9,4 +9,5 @@ urlpatterns=[
     path('Success', views.success),
     path('BackURL', views.backurl),
     path('Cancel', views.billcancel),
+    path('PartCancel', views.partcancel),
 ]

@@ -1,19 +1,17 @@
 # 다날 휴대폰결제 Django Python 연동모듈 (22.05.16)
 
 Django version 2.2.4
-
 Python version 3.7.4
 
-### Django 기본 프로젝트 디렉터리
+## Django 기본 프로젝트 디렉터리
 tdbTestPython
 
-### Django startapp 을 통해 생성된 디렉터리
+## Django startapp 을 통해 생성된 디렉터리
 appTdbClient
 
 
-## 기본 순서 : Ready - CPCGI ( Confirm - Bill )
+# 기본 순서 : Ready - CPCGI ( Confirm - Bill )
 Ready : 가맹점 인증, 세션정보 생성
-
 CPCGI : 구매자 신분 확인, 거래건 정보 확인, 거래 발생
 
 ## 연동시 변경해야할 사항:
