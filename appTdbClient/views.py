@@ -2,7 +2,6 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from .inc import Ready, CPCGI, Billcancel, Partcancel
-
 def success(request):
     return HttpResponse('Success')
 

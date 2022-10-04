@@ -11,7 +11,7 @@ import json
 #
 #############################################
 
-with open('conf.json') as f:
+with open(os.path.join(os.getcwd(), 'appTdbClient', 'inc','conf.json')) as f:
     jsonData = json.load(f)
     
 if jsonData['Debug'] : print(jsonData)
@@ -29,7 +29,7 @@ def CallTeledit(TransData, Debug=False):
     #Output = requests.post('https://ui.teledit.com/Danal/TGW/request.php', headers=headers, data=arg)
     
     TeleditBinPath = jsonData['TeleditBinPath']
-    Bin="SClient"
+    Bin="/SClient"
     arg=MakeParam(TransData)
     Input = TeleditBinPath+Bin+" \""+arg+"\""
     #Output = os.popen(Input).read()
